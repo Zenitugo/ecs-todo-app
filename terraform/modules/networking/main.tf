@@ -32,3 +32,17 @@ resource "aws_subnet" "ecs_public_subnet" {
     }
 }
 
+# This resource creates a route table for the public subnet.
+resource "aws_route_table" "ecs_public_rt" {
+  vpc_id = aws_vpc.ecs_network.id   
+
+    tags = {
+        Name = "${var.name}-public-rt"
+    }
+}
+
+# This resource associates the public subnet with the route table.
+resource "aws_route_table_association" "ecs_public_rt_assoc" {
+  subnet_id      = aws_subnet.ecs_public_subnet.id
+  route_table_id = aws_route_table.ecs_public_rt.id     
+}
