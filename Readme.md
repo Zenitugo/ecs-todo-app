@@ -37,10 +37,37 @@ This is Part 1 of my ECS series where I document my hands-on juoutney as an AWS 
 ├── templates/
 │   └── index.html         # Frontend HTML page
 └── terraform/
-    ├── main.tf            # Main infrastructure resources
-    ├── variables.tf       # Input variables
-    ├── outputs.tf         # Output values
-    └── provider.tf        # AWS provider configuration
+    ├── backend.tf              # Remote state configuration
+    ├── main.tf                 # Root module - calls all modules
+    ├── variables.tf            # Root variables
+    ├── outputs.tf              # Root outputs
+    ├── terraform.tfvars        # Your actual variable values
+    ├── provider.tf             # AWS provider
+    └── modules/
+        ├── ecr/
+        │   ├── main.tf         # ECR repository
+        │   ├── variables.tf
+        │   └── outputs.tf
+        ├── networking/
+        │   ├── main.tf         # VPC, subnets, IGW, route tables
+        │   ├── variables.tf
+        │   └── outputs.tf
+        ├── security/
+        │   ├── main.tf         # Security groups
+        │   ├── variables.tf
+        │   └── outputs.tf
+        ├── iam/
+        │   ├── main.tf         # IAM roles and policies
+        │   ├── variables.tf
+        │   └── outputs.tf
+        ├── ec2/
+        │   ├── main.tf         # EC2 instance for ECS
+        │   ├── variables.tf
+        │   └── outputs.tf
+        └── ecs/
+            ├── main.tf         # ECS cluster, task definition, service
+            ├── variables.tf
+            └── outputs.tf 
 
 ```
 
