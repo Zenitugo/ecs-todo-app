@@ -3,7 +3,7 @@
 ## 📖 Overview
 This project demonstrates how to deploy a containerised Python Flask Todo application on AWS ECS using the EC2 launch type. The infrastructure is fully provisioned using Terraform and the CI/CD pipeline is managed using AWS CodePipeline and CodeBuild.
 
-This is Part 1 of my ECS series where I document my hands-on juoutney as an AWS Community Builder
+This is Part 1 of my ECS series where I document my hands-on juourney as an AWS Community Builder
 
 ## Brief description of the project, its purpose, and what problem it solves.
 
