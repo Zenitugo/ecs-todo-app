@@ -20,4 +20,15 @@ resource "aws_internet_gateway" "ecs_igw" {
     }
 }
 
+# This resource creates a public subnet for the VPC.
+resource "aws_subnet" "ecs_public_subnet" {
+  vpc_id            = aws_vpc.ecs_network.id
+  cidr_block        = var.public_subnet_cidr_block
+  availability_zone = var.availability_zone
+  map_public_ip_on_launch = true
+
+    tags = {
+        Name = "${var.name}-public-subnet"
+    }
+}
 
