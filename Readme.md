@@ -29,7 +29,7 @@ This is Part 1 of my ECS series where I document my hands-on juoutney as an AWS 
 ## 📂 Repo Structure
 
 ```
-    todo-app/
+todo-app/
 ├── app.py                  # Flask application
 ├── requirements.txt        # Python dependencies
 ├── Dockerfile              # Container build instructions
