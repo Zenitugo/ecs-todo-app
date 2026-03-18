@@ -94,6 +94,17 @@ docker build -t todo-app .
 docker run -p 5000:5000 todo-app
 ```
 
+4. Provision AWS Infrastructure
+```bash
+cd terraform/dev
+terraform init 
+terraform plan -var-file="terraform.tfvars" 
+terraform apply -auto-approve
+
+# To destroy the infrastructure
+terraform destroy -auto-approve
+```
+
 
 ## 🎥 Demo
 
