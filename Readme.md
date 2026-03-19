@@ -105,6 +105,7 @@ terraform apply -auto-approve
 terraform destroy -auto-approve
 ```
 
+NOTE: After confirming your script works well, its time to deploy AWS Codebuild and Code Pipeline
 
 ## 🎥 Demo
 
