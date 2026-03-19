@@ -5,3 +5,10 @@ module "networking" {
   public_subnet_cidr_block            =  var.public_subnet_cidr_block
   availability_zone                   =  var.availability_zone
 }
+
+
+module "SG" {
+  source                             = "../modules/SG"
+  name                               = var.name
+  vpc_id                             = module.networking.vpc_id
+}
