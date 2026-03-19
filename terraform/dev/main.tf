@@ -34,6 +34,9 @@ module "ecs" {
   source                             = "../modules/ecs"
   name                               = var.name
   ecr_repository_url                 = module.ecr.ecr_repository_url
-  container_port                    = var.container_port
-  aws_region                        = var.aws_region
+  container_port                     = var.container_port
+  aws_region                         = var.aws_region
+  private_subnet_1_id                = module.networking.private_subnet_1_id
+  private_subnet_2_id                = module.networking.private_subnet_2_id
+  sg_ids                             = module.SG.sg_ids
 }
