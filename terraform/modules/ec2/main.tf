@@ -2,8 +2,8 @@ resource "aws_instance" "todo_app_server" {
     ami                             = data.aws_ami.ubuntu.id
     instance_type                   = var.instance_type
     key_name                        = var.key_name
-    subnet_id                       = var.public_subnet_id
-    vpc_security_group_ids          = var.sg_ids
+    subnet_id                       = var.private_subnet_1_id
+    vpc_security_group_ids          = var.ec2_sg_ids
 
     tags = {
         Name = "${var.name}-ec2"
