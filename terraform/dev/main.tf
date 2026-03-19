@@ -13,6 +13,7 @@ module "SG" {
   source                             = "../modules/SG"
   name                               = var.name
   vpc_id                             = module.networking.vpc_id
+  container_port                     = var.container_port
 }
 
 module "ec2" {
@@ -38,5 +39,5 @@ module "ecs" {
   aws_region                         = var.aws_region
   private_subnet_1_id                = module.networking.private_subnet_1_id
   private_subnet_2_id                = module.networking.private_subnet_2_id
-  sg_ids                             = module.SG.sg_ids
+  ecs_sg_ids                         = module.SG.ecs_sg_ids
 }
