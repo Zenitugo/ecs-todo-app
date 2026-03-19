@@ -22,3 +22,8 @@ module "ec2" {
   name                               = var.name
   key_filename                       = var.key_filename
 }
+
+module "ecr" {
+  source                             = "../modules/ecr"
+  name                               = var.name
+}
