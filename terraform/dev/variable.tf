@@ -5,3 +5,5 @@ variable availability_zone {}
 variable instance_type {}
 variable key_name {}
 variable key_filename {}
+variable container_port {}
+variable aws_region {}
