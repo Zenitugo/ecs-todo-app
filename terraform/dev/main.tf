@@ -27,3 +27,11 @@ module "ecr" {
   source                             = "../modules/ecr"
   name                               = var.name
 }
+
+module "ecs" {
+  source                             = "../modules/ecs"
+  name                               = var.name
+  ecr_repository_url                 = module.ecr.ecr_repository_url
+  container_port                    = var.container_port
+  aws_region                        = var.aws_region
+}
