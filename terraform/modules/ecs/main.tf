@@ -33,5 +33,12 @@ resource "aws_ecs_service" "todo_app_service" {
     security_groups = [var.ecs_sg_ids]
     assign_public_ip = false
   }
+
+  load balancer {
+    target_group_arn = var.target_group_arn
+    container_name   = "${var.name}-container"
+    container_port   = var.container_port
+  }
+
   depends_on      = [aws_ecs_task_definition.todo_app_task]
 }
