@@ -24,7 +24,7 @@ resource "aws_internet_gateway" "ecs_igw" {
 resource "aws_subnet" "ecs_public_subnet" {
   vpc_id            = aws_vpc.ecs_network.id
   cidr_block        = var.public_subnet_cidr_block
-  availability_zone = var.availability_zone
+  availability_zone = data.aws_availability_zones.available.names[0]
   map_public_ip_on_launch = true
 
     tags = {
@@ -37,7 +37,7 @@ resource "aws_subnet" "ecs_public_subnet" {
 resource "aws_subnet" "ecs_private_subnet_1" {
   vpc_id            = aws_vpc.ecs_network.id
   cidr_block        = var.private_subnet_1_cidr_block
-  availability_zone = var.availability_zone
+  availability_zone = data.aws_availability_zones.available.names[0]
   map_public_ip_on_launch = false
 
     tags = {
@@ -51,7 +51,7 @@ resource "aws_subnet" "ecs_private_subnet_1" {
 resource "aws_subnet" "ecs_private_subnet_2" {
   vpc_id            = aws_vpc.ecs_network.id
   cidr_block        = var.private_subnet_2_cidr_block
-  availability_zone = var.availability_zone
+  availability_zone = data.aws_availability_zones.available.names[1]
   map_public_ip_on_launch = false
 
     tags = {
