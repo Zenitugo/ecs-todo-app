@@ -30,8 +30,8 @@ resource "aws_ecs_service" "todo_app_service" {
   network_configuration {
     subnets         = [var.private_subnet_1_id, 
                       var.private_subnet_2_id]
-    security_groups = [var.sg_ids]
+    security_groups = [var.ecs_sg_ids]
     assign_public_ip = false
   }
-  depends_on      = [aws_iam_role_policy.foo]
+  depends_on      = [aws_ecs_task_definition.todo_app_task]
 }
