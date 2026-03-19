@@ -60,18 +60,79 @@ resource "aws_subnet" "ecs_private_subnet_2" {
 }
 
 
+# Elastic IP for the NAT Gateway
+resource "aws_eip" "nat_eip" {
+  vpc = true
+    tags = {
+        Name = "${var.name}-nat-eip"
+    }
+}
+
+
+# This resource creates a NAT Gateway in the public subnet.
+resource "aws_nat_gateway" "ecs_nat_gw" {
+  allocation_id = aws_eip.nat_eip.id
+  subnet_id     = aws_subnet.ecs_public_subnet.id
+    tags = {
+        Name = "${var.name}-nat-gw"
+    }
+
+    depends_on = [aws_internet_gateway.ecs_igw]
+}
+
+
+
 
 # This resource creates a route table for the public subnet.
 resource "aws_route_table" "ecs_public_rt" {
   vpc_id = aws_vpc.ecs_network.id   
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.ecs_igw.id
+  }
 
     tags = {
         Name = "${var.name}-public-rt"
     }
 }
 
+
+
+
+# This resource creates a route table for the private subnet.
+resource "aws_route_table" "ecs_private_rt" {
+  vpc_id = aws_vpc.ecs_network.id   
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_nat_gateway.ecs_nat_gw.id
+  }
+
+    tags = {
+        Name = "${var.name}-private-rt"
+    }
+}
+
+
+
 # This resource associates the public subnet with the route table.
 resource "aws_route_table_association" "ecs_public_rt_assoc" {
   subnet_id      = aws_subnet.ecs_public_subnet.id
   route_table_id = aws_route_table.ecs_public_rt.id     
+}
+
+
+
+# This resource associates the private subnet 1 with the route table.
+resource "aws_route_table_association" "ecs_private_rt_assoc" {
+  subnet_id      = aws_subnet.ecs_private_subnet_1.id
+  route_table_id = aws_route_table.ecs_private_rt.id     
+}
+
+
+# This resource associates the private subnet 2 with the route table.
+resource "aws_route_table_association" "ecs_private_rt_assoc_2" {
+  subnet_id      = aws_subnet.ecs_private_subnet_2.id
+  route_table_id = aws_route_table.ecs_private_rt.id     
 }
