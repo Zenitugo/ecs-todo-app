@@ -40,4 +40,14 @@ module "ecs" {
   private_subnet_1_id                = module.networking.private_subnet_1_id
   private_subnet_2_id                = module.networking.private_subnet_2_id
   ecs_sg_ids                         = module.SG.ecs_sg_ids
+  target_group_arn                   = module.lb.target_group_arn
+}
+
+module "lb" {
+  source                             = "../modules/lb"
+  name                               = var.name
+  public_subnet_id                   = module.networking.ecs_public_subnet_id
+  load_balancer_sg_ids               = module.SG.load_balancer_sg_ids
+  container_port                     = var.container_port
+  vpc_id                             = module.networking.vpc_id
 }
