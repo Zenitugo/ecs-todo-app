@@ -20,8 +20,8 @@ module "ec2" {
   source                             = "../modules/ec2"
   instance_type                      = var.instance_type
   key_name                           = var.key_name
-  public_subnet_id                   = module.networking.public_subnet_id
-  sg_ids                             = [module.SG.sg_ids]
+  public_subnet_id                   = module.networking.private_subnet_1_id
+  ec2_sg_ids                         = module.SG.ec2_sg_ids
   name                               = var.name
   key_filename                       = var.key_filename
 }
