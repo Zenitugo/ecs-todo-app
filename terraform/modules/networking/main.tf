@@ -20,7 +20,7 @@ resource "aws_internet_gateway" "ecs_igw" {
     }
 }
 
-# This resource creates a public subnet (Load Balancer) for the VPC.
+# This resource creates a public subnet 1 (Load Balancer) for the VPC.
 resource "aws_subnet" "ecs_public_subnet" {
   vpc_id            = aws_vpc.ecs_network.id
   cidr_block        = var.public_subnet_cidr_block
@@ -29,6 +29,20 @@ resource "aws_subnet" "ecs_public_subnet" {
 
     tags = {
         Name = "${var.name}-public-subnet"
+    }
+}
+
+
+# This resource creates a public subnet 2 (Load Balancer) for the VPC.
+resource "aws_subnet" "ecs_public_subnet_2" {
+  vpc_id            = aws_vpc.ecs_network.id
+  cidr_block        = var.public_subnet_cidr_block_2
+  availability_zone = data.aws_availability_zones.available.names[1]
+  map_public_ip_on_launch = true
+
+    tags = {
+        Name = "${var.name}-public-subnet-2"
+
     }
 }
 
@@ -62,7 +76,7 @@ resource "aws_subnet" "ecs_private_subnet_2" {
 
 # Elastic IP for the NAT Gateway
 resource "aws_eip" "nat_eip" {
-  vpc = true
+  domain = "vpc"
     tags = {
         Name = "${var.name}-nat-eip"
     }
@@ -122,7 +136,11 @@ resource "aws_route_table_association" "ecs_public_rt_assoc" {
   route_table_id = aws_route_table.ecs_public_rt.id     
 }
 
-
+# This resource associates the public subnet with the route table.
+resource "aws_route_table_association" "ecs_public_rt_assoc_2" {
+  subnet_id      = aws_subnet.ecs_public_subnet_2.id
+  route_table_id = aws_route_table.ecs_public_rt.id     
+}
 
 # This resource associates the private subnet 1 with the route table.
 resource "aws_route_table_association" "ecs_private_rt_assoc" {
