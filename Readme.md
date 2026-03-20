@@ -96,7 +96,7 @@ docker run -p 5000:5000 todo-app
 
 4. Provision AWS Infrastructure
 ```bash
-cd terraform/dev
+cd terraform/dev 
 terraform init 
 terraform plan -var-file="terraform.tfvars" 
 terraform apply -auto-approve
@@ -105,11 +105,8 @@ terraform apply -auto-approve
 terraform destroy -auto-approve
 ```
 
-NOTE: After confirming your script works well, its time to deploy AWS Codebuild and Code Pipeline
-
 ## 🎥 Demo
 
-- [Live Demo Link](#) (if deployed)
 - [YouTube Walkthrough](#) (optional)
 
 ## 📚 Blog Post
