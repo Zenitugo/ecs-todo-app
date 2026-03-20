@@ -5,3 +5,5 @@ variable aws_region {}
 variable private_subnet_1_id {}
 variable private_subnet_2_id {}
 variable target_group_arn {}
+variable ecs_sg_ids {}
+variable execution_role_arn {}
