@@ -30,44 +30,56 @@ This is Part 1 of my ECS series where I document my hands-on juourney as an AWS 
 
 ```
 todo-app/
-├── app.py                  # Flask application
-├── requirements.txt        # Python dependencies
-├── Dockerfile              # Container build instructions
-├── buildspec.yml           # CodeBuild pipeline instructions
-├── templates/
-│   └── index.html         # Frontend HTML page
-└── terraform/
-    ├── backend.tf              # Remote state configuration
-    ├── main.tf                 # Root module - calls all modules
-    ├── variables.tf            # Root variables
-    ├── outputs.tf              # Root outputs
-    ├── terraform.tfvars        # Your actual variable values
-    ├── provider.tf             # AWS provider
-    └── modules/
-        ├── ecr/
-        │   ├── main.tf         # ECR repository
-        │   ├── variables.tf
-        │   └── outputs.tf
-        ├── networking/
-        │   ├── main.tf         # VPC, subnets, IGW, route tables
-        │   ├── variables.tf
-        │   └── outputs.tf
-        ├── security/
-        │   ├── main.tf         # Security groups
-        │   ├── variables.tf
-        │   └── outputs.tf
-        ├── iam/
-        │   ├── main.tf         # IAM roles and policies
-        │   ├── variables.tf
-        │   └── outputs.tf
-        ├── ec2/
-        │   ├── main.tf         # EC2 instance for ECS
-        │   ├── variables.tf
-        │   └── outputs.tf
-        └── ecs/
-            ├── main.tf         # ECS cluster, task definition, service
-            ├── variables.tf
-            └── outputs.tf 
+├── Readme.md
+├── app
+│   ├── Dockerfile
+│   ├── app.py
+│   ├── requirements.txt
+│   └── templates
+│       └── index.html
+└── terraform
+    ├── dev
+    │   ├── backend.tf
+    │   ├── main.tf
+    │   ├── provider.tf
+    │   ├── terraform.tfvars
+    │   └── variable.tf
+    └── modules
+        ├── SG
+        │   ├── main.tf
+        │   ├── output.tf
+        │   └── variable.tf
+        ├── ec2
+        │   ├── data.tf
+        │   ├── main.tf
+        │   └── variable.tf
+        ├── ecr
+        │   ├── main.tf
+        │   ├── output.tf
+        │   └── variable.tf
+        ├── ecs
+        │   ├── container_definition.json.tpl
+        │   ├── main.tf
+        │   ├── output.tf
+        │   └── variable.tf
+        ├── iam
+        │   ├── data.tf
+        │   ├── main.tf
+        │   ├── output.tf
+        │   └── variable.tf
+        ├── lb
+        │   ├── main.tf
+        │   ├── output.tf
+        │   └── variable.tf
+        ├── networking
+        │   ├── data.tf
+        │   ├── main.tf
+        │   ├── output.tf
+        │   └── variable.tf
+        └── s3
+            ├── main.tf
+            ├── output.tf
+            └── variable.tf
 
 ```
 
