@@ -117,6 +117,8 @@ terraform apply -auto-approve
 terraform destroy -auto-approve
 ```
 
+5. Set up Amazon CodeBuild and CodePipeline in the AWS Console.
+
 ## 🎥 Demo
 
 - [YouTube Walkthrough](#) (optional)
