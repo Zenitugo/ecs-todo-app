@@ -3,7 +3,8 @@ resource "aws_instance" "todo_app_server" {
     instance_type                   = var.instance_type
     key_name                        = var.key_name
     subnet_id                       = var.private_subnet_1_id
-    vpc_security_group_ids          = var.ec2_sg_ids
+    vpc_security_group_ids          = [var.ec2_sg_ids]
+    iam_instance_profile            = var.ec2_instance_profile_name
 
     tags = {
         Name = "${var.name}-ec2"
