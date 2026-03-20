@@ -8,15 +8,19 @@ resource "aws_ecs_cluster" "todo_app_cluster" {
 # Create ECS Task Definition
 resource "aws_ecs_task_definition" "todo_app_task" {
   family                   = "${var.name}-task"
-  container_definitions    = templatefile("${path.module}/container_definitions.json")
+  container_definitions    = templatefile("${path.module}/container_definition.json.tpl", {
+    name           = "${var.name}-container",
+    image          = var.ecr_repository_url,
+    container_port = var.container_port
+    aws_region     = var.aws_region
+  })
   requires_compatibilities = ["EC2"]
-  network_mode             = "awsVPC"
-  execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
+  network_mode             = "awsvpc"
+  execution_role_arn       = var.execution_role_arn
   cpu                      = "256"
   memory                   = "512"
 
-  depends_on = [aws_ecs_cluster.todo_app_cluster,
-                 aws_iam_role.ecs_task_execution_role]
+  depends_on = [aws_ecs_cluster.todo_app_cluster,]
 }       
 
 
@@ -34,7 +38,7 @@ resource "aws_ecs_service" "todo_app_service" {
     assign_public_ip = false
   }
 
-  load balancer {
+  load_balancer {
     target_group_arn = var.target_group_arn
     container_name   = "${var.name}-container"
     container_port   = var.container_port
