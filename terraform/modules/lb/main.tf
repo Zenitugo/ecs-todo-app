@@ -4,8 +4,9 @@ resource "aws_lb" "ecs_lb" {
   name               = "${var.name}-lb"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = var.load_balancer_sg_ids
-  subnets            = var.public_subnet_id
+  security_groups    = [var.load_balancer_sg_ids]
+  subnets            = [var.public_subnet_id,
+                        var.public_subnet_id_2]
 
 
     tags = {
