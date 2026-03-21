@@ -1,4 +1,4 @@
-# Deploying a Todo App on AWS ECS Using Terraform with EC2 Lauch Type
+# Deploying a Todo App on AWS ECS with EC2 Lauch Type
 
 ## 📖 Overview
 This project demonstrates how to deploy a containerised Python Flask Todo application on AWS ECS using the EC2 launch type. The infrastructure is fully provisioned using Terraform and the CI/CD pipeline is managed using AWS CodePipeline and CodeBuild.
@@ -34,12 +34,14 @@ todo-app/
 ├── app
 │   ├── Dockerfile
 │   ├── app.py
+│   ├── buildspec.yml
 │   ├── requirements.txt
 │   └── templates
 │       └── index.html
 └── terraform
     ├── dev
     │   ├── backend.tf
+    │   ├── ecs-todo-app-key.pem
     │   ├── main.tf
     │   ├── provider.tf
     │   ├── terraform.tfvars
