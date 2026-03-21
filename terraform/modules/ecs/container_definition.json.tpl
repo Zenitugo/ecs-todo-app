@@ -1,6 +1,6 @@
 [
     {
-      "name": "${name}-container",
+      "name": "${name}",
       "image": "${image}:latest",
       "cpu": 256,
       "memory":512,
