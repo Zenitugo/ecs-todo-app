@@ -30,18 +30,18 @@ This is Part 1 of my ECS series where I document my hands-on juourney as an AWS 
 
 ```
 todo-app/
+.
+├── Dockerfile
 ├── Readme.md
 ├── app
-│   ├── Dockerfile
 │   ├── app.py
-│   ├── buildspec.yml
 │   ├── requirements.txt
 │   └── templates
 │       └── index.html
+├── buildspec.yml
 └── terraform
     ├── dev
     │   ├── backend.tf
-    │   ├── ecs-todo-app-key.pem
     │   ├── main.tf
     │   ├── provider.tf
     │   ├── terraform.tfvars
