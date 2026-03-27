@@ -3,7 +3,7 @@ version: 0.2
 env:
   # Environment variable configuration
   AWS_DEFAULT_REGION: "us-east-1"
-  APP_NAME: "todo-app-container"
+  APP_NAME: "ecs-todo-app-container"
   CLUSTER_NAME: "ecs-todo-app-cluster"
   SERVICE_NAME: "ecs-todo-app-service"
 
