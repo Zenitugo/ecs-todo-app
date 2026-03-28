@@ -20,14 +20,18 @@ phases:
     commands:
       - echo Building the Docker image...
       - docker build -t $APP_NAME:$IMAGE_TAG ./app
+      - docker tag $APP_NAME:$IMAGE_TAG $ECR_REPO_URL:latest
       - docker tag $APP_NAME:$IMAGE_TAG $ECR_REPO_URL:$IMAGE_TAG
   post_build:
     # Post-build steps (notifications, cleanup)
     commands:
       - echo Pushing the Docker image to ECR...
+      - docker push $ECR_REPO_URL:latest
       - docker push $ECR_REPO_URL:$IMAGE_TAG
       - echo Creating image definition file...
-      - printf '[{"name":"%s","imageUri":"%s"}]' $APP_NAME $ECR_REPO_URL:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"%s","imageUri":"%s"}]' "$APP_NAME" "$ECR_REPO_URL" "$IMAGE_TAG" > imagedefinitions.json
+      - echo "imagedefinitions.json contents:"
+      - cat imagedefinitions.json
       - echo Build completed on `date`
 artifacts:
   # Build output configuration
