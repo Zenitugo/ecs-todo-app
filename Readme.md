@@ -1,11 +1,25 @@
 # Deploying a Todo App on AWS ECS with EC2 Lauch Type
 
+[![AWS ECS](https://img.shields.io/badge/AWS-ECS-blue.svg)](https://aws.amazon.com/ecs/)
+[![Docker](https://img.shields.io/badge/Docker-Containerized-blue.svg)](https://www.docker.com/)
+[![Terraform](https://img.shields.io/badge/Terraform-IaC-purple.svg)](https://www.terraform.io/)
+[![CI/CD](https://img.shields.io/badge/CI%2FCD-CodePipeline-orange.svg)](https://aws.amazon.com/codepipeline/)
+
 ## 📖 Overview
-This project demonstrates how to deploy a containerised Python Flask Todo application on AWS ECS using the EC2 launch type. The infrastructure is fully provisioned using Terraform and the CI/CD pipeline is managed using AWS CodePipeline and CodeBuild.
+This project demonstrates how to deploy a **containerized Python Flask Todo application** on **AWS ECS (EC2 launch type)**. The entire infrastructure is fully provisioned using **Terraform** and a **CI/CD pipeline** is set up using **AWS CodeBuild** and **CodePipeline** for automated building and deployments.
 
-This is Part 1 of my ECS series where I document my hands-on juourney as an AWS Community Builder
+This is **Part 1** of my AWS ECS series where I document my hands-on juourney as an AWS Community Builder(Container Track).
 
-## Brief description of the project, its purpose, and what problem it solves.
+
+## Brief Description
+
+This project takes a simple Flask Todo app from local development to the cloud. It solves the classic **"but it works on my machine"** problem by showing how to consistently package and deploy applications using Docker containers and AWS ECS.
+
+**Purpose**: To teach practical DevOps skills — containerization, Infrastructure as Code, and CI/CD — through a real, working example.
+
+
+## Architectural Design of the Project
+
 
 ## 🚀 Features
 - Python Flask Todo app with frontend REST API
@@ -17,73 +31,41 @@ This is Part 1 of my ECS series where I document my hands-on juourney as an AWS 
 
 ## 🛠 Tech Stack
 
-- Python(Flask)
-- Docker
-- AWS ECR
-- AWS ECS
-- Terraform
-- AWS Code Build
-- AWS Code Pipeline
-- Github
+- **Backend**: Python + Flask
+- **Container**: Docker
+- **Registry**: Amazon ECR
+- **Orchestration**: Amazon ECS (EC2 launch type)
+- **IaC**: Terraform
+- **CI/CD**: AWS CodeBuild + AWS CodePipeline
+- **Version Control**: GitHub
+
 
 ## 📂 Repo Structure
 
-```
+```bash
 todo-app/
-.
+├── app/
+│   ├── app.py
+│   ├── requirements.txt
+│   └── templates/
+│       └── index.html
 ├── Dockerfile
-├── Readme.md
-├── app
-│   ├── app.py
-│   ├── requirements.txt
-│   └── templates
-│       └── index.html
 ├── buildspec.yml
-└── terraform
-    ├── dev
-    │   ├── backend.tf
-    │   ├── main.tf
-    │   ├── provider.tf
-    │   ├── terraform.tfvars
-    │   └── variable.tf
-    └── modules
-        ├── SG
-        │   ├── main.tf
-        │   ├── output.tf
-        │   └── variable.tf
-        ├── ec2
-        │   ├── data.tf
-        │   ├── main.tf
-        │   └── variable.tf
-        ├── ecr
-        │   ├── main.tf
-        │   ├── output.tf
-        │   └── variable.tf
-        ├── ecs
-        │   ├── container_definition.json.tpl
-        │   ├── main.tf
-        │   ├── output.tf
-        │   └── variable.tf
-        ├── iam
-        │   ├── data.tf
-        │   ├── main.tf
-        │   ├── output.tf
-        │   └── variable.tf
-        ├── lb
-        │   ├── main.tf
-        │   ├── output.tf
-        │   └── variable.tf
-        ├── networking
-        │   ├── data.tf
-        │   ├── main.tf
-        │   ├── output.tf
-        │   └── variable.tf
-        └── s3
-            ├── main.tf
-            ├── output.tf
-            └── variable.tf
-
+└── terraform/
+    └── dev/                  # Development environment
+        ├── main.tf
+        ├── backend.tf
+        └── ...
+    └── modules/              # Reusable modules (networking, ecs, iam, etc.)
 ```
+
+## Prerequisites
+
+- AWS Account with appropriate IAM permissions
+- AWS CLI configured
+- Docker installed and running
+- Terraform installed
+- GitHub account + Personal Access Token (for CodePipeline)
 
 ## ⚙️ Setup Instructions
 
@@ -127,6 +109,6 @@ terraform destroy -auto-approve
 
 ## 📚 Blog Post
 
-This project is explained in detail here: [Blog Link](#)
+This project is explained in detail here: [Hashnode](https://dhebbydavid.hashnode.dev/deploying-your-first-containerized-application-on-aws-ecs-part-1)
 
 ## 👤 Ugochi Deborah Ukaegbu, AWS Builders Community Programme (Containers Track)
