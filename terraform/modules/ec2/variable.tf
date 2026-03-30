@@ -5,3 +5,4 @@ variable name {}
 variable key_filename {}
 variable ec2_sg_ids {}
 variable ec2_instance_profile_name {}
+variable cluster_name {}
