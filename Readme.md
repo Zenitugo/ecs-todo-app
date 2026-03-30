@@ -19,6 +19,8 @@ This project takes a simple Flask Todo app from local development to the cloud. 
 
 
 ## Architectural Design of the Project
+<img width="1337" height="1600" alt="ecs-ec2 deployment (2)" src="https://github.com/user-attachments/assets/008aa142-89a5-4907-81e4-feb273f34482" />
+
 
 
 ## 🚀 Features
