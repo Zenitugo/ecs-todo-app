@@ -1,7 +1,7 @@
 name                         = "ecs-todo-app"
 vpc_cidr_block               = "10.0.0.0/16"
 public_subnet_cidr_block     = "10.0.1.0/24"
-instance_type                = "t3.medium"
+instance_type                = "t3.micro"
 key_name                     = "ecs-todo-app-key"
 key_filename                 = "ecs-todo-app-key.pem"
 container_port               = 5000
@@ -9,3 +9,4 @@ aws_region                   = "us-east-1"
 private_subnet_1_cidr_block  = "10.0.2.0/24"
 private_subnet_2_cidr_block  = "10.0.4.0/24"
 public_subnet_cidr_block_2   = "10.0.3.0/24"
+desired_count                = 1
