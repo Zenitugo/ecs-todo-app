@@ -25,6 +25,7 @@ module "ec2" {
   name                               = var.name
   key_filename                       = var.key_filename
   ec2_instance_profile_name          = module.iam.ec2_instance_profile_name
+  cluster_name                       = module.ecs.cluster_name
 
 }
 
@@ -44,6 +45,7 @@ module "ecs" {
   ecs_sg_ids                         = module.SG.ecs_sg_ids
   target_group_arn                   = module.lb.target_group_arn
   execution_role_arn                 = module.iam.execution_role_arn
+  desired_count                      = var.desired_count
 }
 
 module "lb" {
