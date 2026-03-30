@@ -1,10 +1,17 @@
 resource "aws_instance" "todo_app_server" {
-    ami                             = data.aws_ami.ubuntu.id
+    ami                             = data.aws_ami.ecs_ami.id
     instance_type                   = var.instance_type
     key_name                        = var.key_name
     subnet_id                       = var.private_subnet_1_id
     vpc_security_group_ids          = [var.ec2_sg_ids]
     iam_instance_profile            = var.ec2_instance_profile_name
+
+
+    user_data = <<-EOF
+    #!/bin/bash
+    echo ECS_CLUSTER=${var.cluster_name} >> /etc/ecs/ecs.config
+  EOF
+
 
     tags = {
         Name = "${var.name}-ec2"
