@@ -7,3 +7,4 @@ variable private_subnet_2_id {}
 variable target_group_arn {}
 variable ecs_sg_ids {}
 variable execution_role_arn {}
+variable  desired_count {}

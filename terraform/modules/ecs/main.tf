@@ -29,7 +29,7 @@ resource "aws_ecs_service" "todo_app_service" {
   name            = "${var.name}-service"
   cluster         = aws_ecs_cluster.todo_app_cluster.id
   task_definition = aws_ecs_task_definition.todo_app_task.arn
-  desired_count   = 2
+  desired_count   = var.desired_count
   
   network_configuration {
     subnets         = [var.private_subnet_1_id, 
