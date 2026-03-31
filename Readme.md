@@ -31,7 +31,7 @@ This project takes a simple Flask Todo app from local development to the cloud. 
 - CI/CD Pipeline with AWs Code Pipeline and Code Build
 - Health check endpoint for ECS container monitoring
 
-## 🛠 Tech Stack
+## 🛠  Tech Stack 
 
 - **Backend**: Python + Flask
 - **Container**: Docker
@@ -104,6 +104,17 @@ terraform destroy -auto-approve
 ```
 
 5. Set up Amazon CodeBuild and CodePipeline in the AWS Console.
+
+## 🛠️ Troubleshooting
+Here are the most common issues I encountered (and fixed):
+
+- **"No Container Instances were found"**: EC2 instance not registered with ECS.  
+  Fix: Use ECS-optimized AMI and ensure ECS Agent is running.
+
+- **CodeBuild service quota error** (e.g., "Cannot have more than X active builds for the account"):  Build fails due to account-level concurrent build limits.  
+  **Fix**: Go to the **AWS Service Quotas** console → Search for **CodeBuild** → Request an increase for "Concurrent running builds" (for your compute type, e.g., Linux Small/Medium).  
+
+  I had to reach out to AWS Support for approval — it can take a few hours to a couple of days.
 
 ## 🎥 Demo
 
