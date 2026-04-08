@@ -116,9 +116,6 @@ Here are the most common issues I encountered (and fixed):
 
   I had to reach out to AWS Support for approval — it can take a few hours to a couple of days.
 
-## 🎥 Demo
-
-- [YouTube Walkthrough](#) (optional)
 
 ## 📚 Blog Post
 
